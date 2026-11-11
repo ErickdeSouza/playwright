@@ -1,3 +1,6 @@
-FROM mcr.microsoft.com/playwright/mcp
-COPY start.sh /start.sh
-ENTRYPOINT ["sh", "/start.sh"]
+FROM mcr.microsoft.com/playwright:v1.54.0-noble
+WORKDIR /app
+RUN npm install @playwright/mcp@latest
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+ENTRYPOINT ["sh", "/app/start.sh"]
